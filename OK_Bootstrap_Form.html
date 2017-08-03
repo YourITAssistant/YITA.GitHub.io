@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="Modulo di Iscrizione 2017—2018" />
+	<meta name="author" content="Your IT Assistant" />
+	<meta name="keywords" content="HTML, HTML5, CSS, CSS3, JavaScript, jQuery, PHP, Bootstrap" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Corso di Web Design</title>
+
+	<!-- Material Design fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+	<!-- Bootstrap -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Bootstrap Material Design -->
+	<link href="https://youritassistant.github.io/framework/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" rel="stylesheet" />
+	<link href="https://youritassistant.github.io/framework/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet" />
+
+	<link href="https://youritassistant.github.io/framework/snackbarjs/dist/snackbar.min.css" rel="stylesheet" />
+	
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			border: 0 none;
+		}
+
+		body {
+			font-family: 'Roboto', sans-serif;
+			background-color: #24292E; /* #24292E github desktop, #263238 sublime, #CDDCE2 google form, #C3E88D, #bada55, #B2CCD6, #f5f5f5 */
+			color: #33454c; /* #33454c, #455a64 */
+			/*padding-top: 50px;*/
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+
+		legend {
+			color: #33454c; /* #33454c, #455a64 */
+			padding-top: 20px;
+		}
+
+		a, a:hover, a:active, a:focus, a:link, a:visited {
+			outline: 0;
+			outline: 0 !important;
+			outline-style: none;
+			-moz-outline-style: none;
+		}
+		button, object, embed { 
+			outline: 0;
+		}
+
+		/* All Input elements */
+		input::-moz-focus-inner { 
+			outline: 0; 
+		}
+
+		/* Or more specifically*/
+		input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner{
+			outline: 0;
+		}
+
+		/*
+		object, embed,
+		button:hover, button:active, button:focus,
+		a, a:hover, a:active, a:focus, 
+		button::-moz-focus-inner,
+		input[type="reset"]::-moz-focus-inner,
+		input[type="button"]::-moz-focus-inner,
+		input[type="submit"]::-moz-focus-inner,
+		select::-moz-focus-inner,
+		input[type="file"] > input[type="button"]::-moz-focus-inner {
+			border: 0;
+			outline : 0;
+		}
+		*/
+
+		.btn-group-sm .btn-fab {
+			background-color: #33454C !important; /* #009688 / #5BB35B : .btn-primary, #4caf50, azurro: #82AAFF, rosa: #C792EA; blu Sublime: #263238; verde google: #59b259; colore titolo: #33454C*/
+			color: rgba(255, 255, 255, 0.84) !important;
+			display: block;
+			position: fixed;
+			float: right;
+			bottom: 50px;
+			right: 25px; /* 22px, 25px */
+			z-index: 999;
+
+			/* tipo 1 */
+			/*box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);*/
+			/* tipo 2 */
+			/*box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);*/
+			/* tipo 3 */
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+			/* tipo 4 */
+			/*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);*/
+			/* tipo 5 */
+			/*box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3);*/
+		}
+
+		.btn-group-sm .btn-fab:hover {
+			background-color: #9E8048 !important;
+		}
+
+		.modal {
+			text-align: center;
+			padding: 0!important;
+			z-index: 9999;
+		}
+
+		.modal:before {
+			content: '';
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+			margin-right: -4px;
+		}
+
+		.modal-dialog {
+			display: inline-block;
+			text-align: left;
+			vertical-align: middle;
+		}
+
+		/*
+		#bgImg {
+			display: inline-block;
+			position: absolute;
+			float: left;
+			left: 0;
+			top: 0;
+			background-image: url("img/form_bg.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: left top;
+
+			max-width: 100%;
+			width: 100vw;
+			height: 50vh;
+		}
+		*/
+
+		#img_container {
+			position: absolute;
+			z-index: 0;
+		}
+
+		/* fullPage.js - Centered texts in each section
+		* --------------------------------------- */
+		.section{
+			text-align: center;
+		}
+
+		/* fullPage.js - Backgrounds will cover all the section
+		* --------------------------------------- */
+		#section0 {
+			display: block;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0; /* 50%, per posizionarlo a metà; 0 per avere il fullscreen */
+			left: 0;
+			background-repeat: no-repeat;
+			background-size: cover; /* auto, cover, 100% 100%, 100% 50%, 100vw 50vh, 100% auto: https://stackoverflow.com/questions/376253/stretch-and-scale-css-background */
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/form_bg.jpg', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/form_bg.jpg', sizingMethod='scale')";
+			background-attachment: fixed;
+			background-position: left top; /* right top, left bottom, left top */
+
+			/* tipo 1 */
+			/*webkit-box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);*/
+			/*box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);*/
+			/* tipo 2 */
+			/*webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);*/
+			/*box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);*/
+			/* tipo 3 */
+			webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+			/* tipo 4 */
+			/*webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);*/
+			/*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);*/
+			/* tipo 5 */
+			/*webkit-box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3);*/
+			/*box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3);*/
+			/* tipo 6 */
+			/*webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);*/
+			/*box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);*/
+			/* tipo 7 */
+			/*webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);*/
+			/*box-shadow: inset 0 1px 1px rgba(0,0,0,.05);*/
+		}
+
+		/* fullPage.js - Defining each sectino background and styles
+		* --------------------------------------- */
+		#section0{
+			/* The image used */
+			background-image: url("img/form_bg.jpg");
+		}
+
+		.parallax {
+			/* The image used */
+			background-image: url("img/form_bg.jpg");
+
+			/* Position */
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			/*
+			float: left;
+			left: 0;
+			top: 0;
+			*/
+
+			/* Set a specific height */
+			/*max-width: 100%;
+			min-height: 500px;*/
+			width: 100%; /* importante non mettere 100vw per non far uscire la barra di scrolling orizzontale */
+			height: 100%; /* 50vh oppure 50% per averla a metà altezza del browser */
+
+			/* Create the parallax scrolling effect */
+			background-attachment: fixed;
+			background-position: left top; /* right top, left bottom, left top */
+			background-repeat: no-repeat;
+			background-size: auto; /* auto, cover, 100% 100%, 100% 50%, 100vw 50vh, 100% auto: https://stackoverflow.com/questions/376253/stretch-and-scale-css-background */
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/form_bg.jpg', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/form_bg.jpg', sizingMethod='scale')";
+		}
+
+		.form-horizontal .control-label {
+			text-align: left !important; /* importante per avere allineata a sinistra la label dell'email */
+		}
+
+		@media (min-width: 768px) {
+			.form-horizontal .control-label {
+					padding-top: 7px;
+					margin-bottom: 0;
+					text-align: left !important; /* importante, per rendere omogeneo l'allineamento delle label color oro a sinistra */
+			}
+		}
+
+		.form-horizontal label {
+			text-align: left !important; /* importante, per spostare a sinistra le labels di "Sessione Corso desiderata" */
+		}
+
+		.form-horizontal .checkbox {
+			margin-bottom: 10px;
+		}
+
+		body .container .well, body .container-fluid .well, body .container .jumbotron, body .container-fluid .jumbotron, body .container .well-default, body .container-fluid .well-default, body .container .jumbotron-default, body .container-fluid .jumbotron-default {
+			background-color: #f5f5f5;
+			color: #33454c; /* #33454c, #455a64 */
+		}
+		.form-group {
+				position: relative !important; /* relative, per allinearlo alla riga; aòtrimenti initial, per spostarlo a sinistra */
+		}
+		.form-group .radio label, .form-group label, .form-control, .form-group .form-control {
+			background-color: #f5f5f5;
+			color: #33454c; /* #33454c, #455a64 */
+		}
+		.form-group .checkbox label {
+			background-color: #f5f5f5;
+			color: #33454c; /* #33454c, #455a64 */
+		}
+		.form-group .togglebutton label {
+			background-color: #f5f5f5;
+			color: #33454c; /* #33454c, #455a64 */
+		}
+
+		div.label-floating.is-focused label {
+			background-color: #f5f5f5 !important;
+			color: #9E8048 !important; /* #009688, #5BB35B, #9E8048 */
+			font-size: 12px !important;
+			line-height: 12px !important;
+			font-variant: small-caps !important;
+			/*font-weight: bold !important;*/
+			margin-top: 0 !important;
+			/*padding: 10px 0 !important;*/
+			z-index: 2 !important;
+		}
+
+		@media (max-width: 767px) {
+			div.label-floating.is-focused label {
+				background-color: #f5f5f5 !important;
+				color: #9E8048 !important; /* #009688, #5BB35B, #9E8048 */
+				font-size: 12px !important;
+				line-height: 12px !important;
+				font-variant: small-caps !important;
+				/*font-weight: bold !important;*/
+				margin-top: -20px !important;
+				/*padding: 10px 0 !important;*/
+				z-index: 2 !important;
+			}
+		}
+
+		.form-group label {
+			background-color: #f5f5f5;
+			color: #9E8048; /* #33454c, #455a64 */
+			/*text-align: right;*/
+		}
+
+		.form-group.is-focused .form-control,
+		.form-group.is-focused label.control-label {
+			color: #9E8048; /* importante per rendere omogenea la label dei radio buttons con quella degli input text */
+		}
+
+		.form-group label.control-label  {
+			font-size: 12px;
+			line-height: 1.07142857;
+			font-weight: 400;
+			margin: 16px 0 0 0;
+		}
+
+		.form-control::-moz-placeholder {
+			background-color: #f5f5f5;
+			color: #5BB35B !important; /* #999, #33454c, #009688, #5BB35B */
+			opacity: 1;
+		}
+		.form-control:-moz-placeholder {
+			background-color: #f5f5f5;
+			color: #5BB35B !important; /* #999, #33454c, #009688, #5BB35B */
+			opacity: 1;
+		}
+		.form-control:-ms-input-placeholder {
+			background-color: #f5f5f5;
+			color: #5BB35B !important; /* #999, #33454c, #009688, #5BB35B */
+		}
+		.form-control::-webkit-input-placeholder {
+			background-color: #f5f5f5;
+			color: #5BB35B !important; /* #999, #33454c, #009688, #5BB35B */
+		}
+
+		.form-group.is-focused .form-control {
+			outline: 0;
+			background-image: -webkit-gradient(linear,left top,left bottom,from(#5BB35B),to(#5BB35B)),-webkit-gradient(linear,left top,left bottom,from(#D2D2D2),to(#D2D2D2)); /* #009688, #5BB35B */
+			background-image: -webkit-linear-gradient(#5BB35B,#5BB35B),-webkit-linear-gradient(#D2D2D2,#D2D2D2);  /* #009688, #5BB35B */
+			background-image: -o-linear-gradient(#5BB35B,#5BB35B),-o-linear-gradient(#D2D2D2,#D2D2D2);  /* #009688, #5BB35B */
+			background-image: linear-gradient(#5BB35B,#5BB35B),linear-gradient(#D2D2D2,#D2D2D2);  /* #009688, #5BB35B */
+			-webkit-background-size: 100% 2px,100% 1px;
+			background-size: 100% 2px,100% 1px;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			-webkit-transition-duration : .3s;
+			-o-transition-duration : .3s;
+			transition-duration : .3s;
+		}
+
+		.form-control, .form-group .form-control {
+			border: 0;
+			background-image: -webkit-gradient(linear,left top,left bottom,from(#5BB35B),to(#5BB35B)),-webkit-gradient(linear,left top,left bottom,from(#D2D2D2),to(#D2D2D2)); /* #009688, #5BB35B */
+			background-image: -webkit-linear-gradient(#5BB35B,#5BB35B),-webkit-linear-gradient(#D2D2D2,#D2D2D2);  /* #009688, #5BB35B */
+			background-image: -o-linear-gradient(#5BB35B,#5BB35B),-o-linear-gradient(#D2D2D2,#D2D2D2);  /* #009688, #5BB35B */
+			background-image: linear-gradient(#5BB35B,#5BB35B),linear-gradient(#D2D2D2,#D2D2D2);  /* #009688, #5BB35B */
+			-webkit-background-size: 0 2px,100% 1px;
+			background-size: 0 2px,100% 1px;
+			background-repeat: no-repeat;
+			background-position: center bottom,center -webkit-calc(100% - 1px);
+			background-position: center bottom,center calc(100% - 1px);
+			background-color: rgba(0,0,0,0);
+			-webkit-transition: background 0s ease-out;
+			-o-transition: background 0s ease-out;
+			transition: background 0s ease-out;
+			float: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			border-radius: 0;
+		}
+
+		.checkbox .checkbox-material:before, label.checkbox-inline .checkbox-material:before {
+			display: block;
+			position: absolute;
+			top: -5px;
+			left: 0;
+			content: "";
+			background-color: rgba(0,0,0,.84);
+			height: 0; /* in origine 20px, portato a 0 per togliere il difetto del bordo bianco interno nel checkbox */
+			width: 20px; /* in origine 20px */
+			border-radius: 100%;
+			z-index: 1;
+			opacity: 0;
+			margin: 0;
+			-webkit-transform: scale3d(2.3,2.3,1);
+			transform: scale3d(2.3,2.3,1);
+		}
+
+		.checkbox .checkbox-material, label.checkbox-inline .checkbox-material {
+			vertical-align: middle;
+			position: relative;
+			top: 1px;
+		}
+
+		.checkbox input[type=checkbox]:checked+.checkbox-material .check, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check {
+			color: #5BB35B; /* #009688, #5BB35B */
+			border-color: #5BB35B; /* #009688, #5BB35B */
+		}
+
+		.checkbox input[type=checkbox]:checked+.checkbox-material .check:before, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check:before {
+			color: #5BB35B; /* #009688, #5BB35B */
+			-webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+			box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+		}
+
+		.radio input[type=radio]:checked~.circle, label.radio-inline input[type=radio]:checked~.circle {
+			border-color: #5BB35B; /* #009688, #5BB35B */
+		}
+
+		.radio input[type=radio]:checked~.check, label.radio-inline input[type=radio]:checked~.check {
+			background-color: #5BB35B; /* #009688, #5BB35B */
+		}
+
+		.radio .check, label.radio-inline .check {
+			height: 15px;
+			width: 15px;
+			border-radius: 100%;
+			background-color: #5BB35B; /* #009688, #5BB35B */
+			-webkit-transform: scale3d(0,0,0);
+			transform: scale3d(0,0,0);
+		}
+
+		#banner {
+			/*border-bottom: none;*/
+		}
+
+		.page-header {
+			padding-bottom: 9px;
+			margin: 40px 0 20px;
+			border-bottom: 1px solid #d4d4d4; /* #eee, #D2D2D2, #d4d4d4 */
+			border-style: dotted;
+		}
+
+		.page-header h1 {
+			font-size: 4em
+		}
+
+		.bs-docs-section {
+			margin-bottom: 0; /* 4em */
+		}
+
+		#FormFloor,
+		#FormFloor form,
+		.topFormFloor,
+		.form-group label,
+		.form-group .radio label,
+		.form-group .form-group input,
+		.form-group div div.checkbox label,
+		.form-group div div.togglebutton label,
+		#textArea {
+			background-color: #f5f5f5;  /* importante che sia #f5f5f5 per nascondere input data di nascita */
+		}
+
+		body .container .well {
+			border-radius: 0;
+		}
+
+		.well {
+			border-radius: 0;
+		}
+
+		#FormFloorCols {
+			position: absolute;
+			left: 0;
+			right: 0;
+
+			top: 100vh;
+			margin-top: -45px; /* -210px, -10px */
+			padding-bottom: 40px;
+			background-color: transparent; /* #f5f5f5, transparent */			
+		}
+
+		.topFormFloor {
+			position: relative;
+			max-width: 640px;
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+
+			border: 2px solid #9E8048;
+			border-top: 8px solid #9E8048;
+
+			/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+			border-top-left-radius: 4px 4px;
+			-moz-border-top-left-radius: 4px 4px;
+			-webkit-border-top-left-radius: 4px 4px;
+
+			border-top-right-radius: 4px 4px;
+			-moz-border-top-right-radius: 4px 4px;
+			-webkit-border-top-right-radius: 4px 4px;
+		}
+
+		#FormFloor {
+			position: relative;
+			max-width: 640px;
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+
+			/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+			border-bottom-left-radius: 4px 4px;
+			-moz-border-bottom-left-radius: 4px 4px;
+			-webkit-border-bottom-left-radius: 4px 4px;
+
+			border-bottom-right-radius: 4px 4px;
+			-moz-border-bottom-right-radius: 4px 4px;
+			-webkit-border-bottom-right-radius: 4px 4px;
+		}
+
+		footer {
+			margin: 5em 0
+		}
+
+		footer li {
+			float: left;
+			margin-right: 1.5em;
+			margin-bottom: 1.5em
+		}
+
+		footer p {
+			clear: left;
+			margin-bottom: 0
+		}
+
+		@media (max-width: 767px) {
+			#banner {
+				margin-bottom: 2em;
+				text-align: center
+			}
+		}
+
+		.infobox .btn-sup {
+			color: rgba(0, 0, 0, 0.5);
+			font-weight: bold;
+			font-size: 15px;
+			line-height: 30px;
+		}
+
+		.infobox .btn-sup img {
+			opacity: 0.5;
+			height: 30px;
+		}
+
+		.infobox .btn-sup span {
+			padding-left: 10px;
+			position: relative;
+			top: 2px;
+		}
+
+		.icons-material .row {
+			margin-bottom: 20px;
+		}
+
+		.icons-material .col-xs-2 {
+			text-align: center;
+		}
+
+		.icons-material i {
+			font-size: 34pt;
+		}
+
+		.radio-primary, .checkbox-primary, .btn-primary {
+			color: #5BB35B !important; /* #5BB35B, #009688 */
+		}
+
+		/* CI SIAMO styling */
+
+		.freebirdFormviewerViewItemsItemItem {
+			background-color: transparent;
+			margin-top: 30px;
+			padding: 16px 17px;
+			page-break-inside: avoid;
+			-webkit-transition: background-color 200ms cubic-bezier(0.0,0.0,0.2,1);
+			transition: background-color 200ms cubic-bezier(0.0,0.0,0.2,1);
+		}
+
+		@media (max-width: 767px) {
+			.freebirdFormviewerViewItemsItemItem {
+				background-color: transparent;
+				margin-top: 80px;
+				padding: 16px 17px;
+				page-break-inside: avoid;
+				-webkit-transition: background-color 200ms cubic-bezier(0.0,0.0,0.2,1);
+				transition: background-color 200ms cubic-bezier(0.0,0.0,0.2,1);
+			}
+		}
+
+		.freebirdMaterialHeaderbannerLabelContainer {
+			-webkit-box-align: stretch;
+			box-align: stretch;
+			-webkit-align-items: stretch;
+			align-items: stretch;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-flex: 1;
+			box-flex: 1;
+			-webkit-flex-grow: 1;
+			flex-grow: 1;
+		}
+
+		.freebirdFormviewerViewItemsSectionheaderBanner {
+			margin-left: -36px;
+		}
+
+		.freebirdFormviewerViewFormContent {
+			color: rgba(0,0,0,.87);
+			padding: 36px 17px;
+		}
+
+		.freebirdFormviewerViewFormCard {
+			background-color: #fff;
+			margin-bottom: 48px;
+			-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+			word-wrap: break-word;
+		}
+
+		.freebirdSolidBackground {
+			background-color: #9E8048; /* #9E8048, rgb(91, 74, 42) */
+			color: rgba(255, 255, 255, 1);
+		}
+
+		.freebirdMaterialHeaderbannerLabelTextContainer {
+			color: #fff;
+			min-width: 0%;
+		}
+
+		div {
+			display: block;
+		}
+
+		.freebirdFormviewerViewFormContent {
+			color: rgba(0,0,0,.87);
+			padding: 36px 17px;
+		}
+
+		.freebirdFormviewerViewFormCard {
+			background-color: #fff;
+			margin-bottom: 48px;
+			-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+			box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+			word-wrap: break-word;
+		}
+
+		.freebirdMaterialHeaderbannerSectionText {
+			font-family: 'Roboto', sans-serif;
+			font-size: 16px;
+			line-height: 24px;
+			font-weight: 400;
+			padding: 8px 8px 8px 42px;
+		}
+
+		.freebirdFormviewerViewItemsSectionheaderBanner .freebirdFormviewerViewItemsSectionheaderBannerText {
+			font-family: 'Roboto', sans-serif;
+			font-size: 20px;
+			font-weight: 500;
+			padding-left: 36px;
+		}
+
+		.freebirdMaterialHeaderbannerSectionTriangleContainer {
+			-webkit-flex-shrink: 0;
+			flex-shrink: 0;
+			overflow: hidden;
+			position: relative;
+			width: 18px;
+		}
+
+		.freebirdMaterialHeaderbannerSectionTriangle {
+			height: 100%;
+			overflow: visible;
+			position: absolute;
+			width: 90%;
+		}
+
+		svg:not(:root), symbol, image, marker, pattern, foreignObject {
+			overflow: hidden;
+		}
+
+		/*
+		html|* > svg {
+			transform-origin: 50% 50% 0px;
+		}
+		*/
+
+		.freebirdMaterialHeaderbannerSectionTriangle>polygon {
+			stroke-width: 1;
+		}
+
+		.freebirdSolidFill {
+			fill: #9E8048; /* #9E8048, rgb(91, 74, 42) */
+			stroke: #9E8048; /* #9E8048, rgb(91, 74, 42) */
+		}
+
+		.freebirdFormviewerViewItemsSectionheaderDescriptionText {
+			color: #59b259; /* #212121, #9E8048, rgb(91, 74, 42), #59b259 */
+			font-family: 'Roboto', sans-serif;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 135%;
+			margin-top: 22px;
+			/*white-space: pre-wrap;*/
+		}
+
+		.freebirdFormviewerViewItemsSectionheaderDescriptionText em {
+			color: #9E8048; /* #212121, #9E8048, rgb(91, 74, 42), #59b259 */
+		}
+
+		.freebirdFormviewerViewItemsItemErrorMessage {
+			color: #db4437;
+			display: none;
+			font-family: 'Roboto', sans-serif;
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 135%;
+		}
+
+		#mouse {
+			display: block;
+			text-align: center;
+		}
+
+		#mouse i.neon {
+			position: relative;
+			color: #9E8048;
+			font-size: 40px;
+			margin: -10px auto 0 auto;
+		}
+
+		/*RESPONSIVE*/
+		@media (max-width: 650px) {
+			#mouse i.neon {
+				font-size: 30px;
+				margin: 0 auto 0 auto;
+			}
+		}
+
+		/*glow for webkit*/
+		@-webkit-keyframes neon2 {
+			from {
+				text-shadow: 0 0 10px #9E8048, 0 0 20px #9E8048, 0 0 30px #9E8048, 0 0 40px #f5f5f5, 0 0 70px #f5f5f5, 0 0 80px #f5f5f5, 0 0 100px #f5f5f5, 0 0 150px #f5f5f5;
+			} /* #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF */
+			to {
+				text-shadow: 0 0 5px #9E8048, 0 0 10px #9E8048, 0 0 15px #9E8048, 0 0 20px #f5f5f5, 0 0 35px #f5f5f5, 0 0 40px #f5f5f5, 0 0 50px #f5f5f5, 0 0 75px #f5f5f5;
+			} /* #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF */
+		}
+
+		/*glow for mozilla*/
+		@-moz-keyframes neon2 {
+			from {
+				text-shadow: 0 0 10px #9E8048, 0 0 20px #9E8048, 0 0 30px #9E8048, 0 0 40px #f5f5f5, 0 0 70px #f5f5f5, 0 0 80px #f5f5f5, 0 0 100px #f5f5f5, 0 0 150px #f5f5f5;
+			} /* #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF */
+			to {
+				text-shadow: 0 0 5px #9E8048, 0 0 10px #9E8048, 0 0 15px #9E8048, 0 0 20px #f5f5f5, 0 0 35px #f5f5f5, 0 0 40px #f5f5f5, 0 0 50px #f5f5f5, 0 0 75px #f5f5f5;
+			} /* #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF */
+		}
+
+		/*glow*/
+		@keyframes neon2 {
+			from {
+				text-shadow: 0 0 10px #9E8048, 0 0 20px #9E8048, 0 0 30px #9E8048, 0 0 40px #f5f5f5, 0 0 70px #f5f5f5, 0 0 80px #f5f5f5, 0 0 100px #f5f5f5, 0 0 150px #f5f5f5;
+			} /* #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF */
+			to {
+				text-shadow: 0 0 5px #9E8048, 0 0 10px #9E8048, 0 0 15px #9E8048, 0 0 20px #f5f5f5, 0 0 35px #f5f5f5, 0 0 40px #f5f5f5, 0 0 50px #f5f5f5, 0 0 75px #f5f5f5;
+			} /* #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF */
+		}
+	</style>
+
+	<!--
+		### Risorse ###
+
+		- Bootstrap:
+			https://getbootstrap.com/getting-started/
+			https://getbootstrap.com/components/
+			https://v4-alpha.getbootstrap.com/examples/
+			https://v4-alpha.getbootstrap.com/examples/grid/
+			https://mdbootstrap.com/forums/topic/floating-action-button-fab/
+			https://github.com/FezVrasta/bootstrap-material-design
+			https://cdnjs.com/libraries/bootstrap-material-design
+			https://mdbootstrap.com/css/colors/
+			https://mdbootstrap.com/css/typography/#text-color
+			Modal centrato: https://codepen.io/dimbslmh/full/mKfCc
+
+		- Boottrap Material Design:
+			http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html
+			https://material.io/icons/
+
+		- jQuery:
+			https://jquery.com/download/
+			https://developers.google.com/speed/libraries/#jquery
+	-->
+
+	<!--
+		TODO:
+		1) modificare le immagini a seconda dello schermo in kandscape o portrait;
+		2) internazionalizzazione
+		3) FAB con menu per altre pagine di navigazione
+	-->
+</head>
+<body>
+	<div id="img_container">
+		<div class="section" id="section0"></div>
+	</div>
+
+	<!--<div id="wrapper">
+		<div id="bgImg" class="parallax"></div>  
+	</div>-->
+
+	<div class="container">
+		<!-- Buttons
+		================================================== -->
+		<div id="fab" class="bs-docs-section"><!--USARE IL FAB PER APRIRE IL MENU DI NAVIGAZIONE!-->
+			<div class="row">
+				<div class="col-md-12">
+				<!--<p>
+						<a href="javascript:void(0)" class="btn btn-primary btn-fab"><i class="material-icons">grade</i></a>
+					</p>-->
+					<!--<h4><small><code>.btn-group-sm .btn-fab</code> or <code>.btn-fab-mini</code></small></h4>-->
+					<p class="btn-group-sm">
+						<a href="javascript:void(0)" class="btn btn-primary btn-fab"><i class="material-icons">subject</i></a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Forms
+		================================================== -->
+		<div class="bs-docs-section">
+			<div class="row">
+				<div class="col-md-12" id="FormFloorCols">
+					<div id="mouse"><i class="material-icons neon">mouse</i></div>
+					<div class="topFormFloor"></div>
+					<div id="FormFloor" class="well"><!--la classe "well" dà l'effetto rilievo; la classe "bs-component" serve per il pulsante che mostra il codice dell'elemento, e quindi la posso togliere ovunque, insieme al javascript che la controlla, per non avere errori! -->
+						
+						<form action="https://docs.google.com/forms/d/e/1FAIpQLSd1lbrSgQkUbT3YU45EoaEhtUokendP9wuqlSpy6IU-k9g5KQ/formResponse" target="_self" method="POST" id="mG61Hd" class="form-horizontal">
+							<fieldset>
+								<!-- Title
+								================================================== -->
+								<div class="page-header" id="banner">
+									<div class="row">
+										<div class="col-sm-12">
+											<h1>Corso di Web Design</h1>
+
+											<p class="lead">Modulo di Iscrizione 2017—2018</p>
+
+											<legend>Legenda</legend>
+											<h5 style="color: #DB4437; font-size: 13px; line-height: 17px">(<span style="font-weight: bold; vertical-align: -2px">*</span>) Campo obbligatorio</h5>
+										</div>
+									</div>
+								</div>
+
+								<!-- Sessioni Anno 2017-2018
+								================================================== -->
+								<div class="form-group">
+									<label class="col-md-3 control-label" style="margin-top: 20px;font-size: 12px; line-height: 12px">Sessione Corso desiderata (<strong style="color: #DB4437; vertical-align: -2px">*</strong>)</label>
+
+									<div class="col-md-9">
+										<div class="radio radio-primary">
+											<label id="group_240745556_1_label" for="group_240745556_1" style="float: left; margin-left: 0; font-size: 14px;">
+
+												<input type="radio" name="entry.240745556" value="Prima (Ottobre 2017 - Marzo 2018)" id="group_240745556_1" role="radio" aria-label="Prima (Ottobre 2017 - Marzo 2018)" required="" aria-required="true" placeholder="" checked="checked" />
+
+												Prima (Ottobre 2017 - Marzo 2018)
+											</label>
+										</div>
+
+										<div class="radio radio-primary">
+											<label id="group_240745556_2_label" for="group_240745556_2" style="float: left; margin-left: 0; font-size: 14px;">
+
+												<input type="radio" name="entry.240745556" value="Seconda (Aprile 2018 - Settembre 2018)" id="group_240745556_2" role="radio" aria-label="Seconda (Aprile 2018 - Settembre 2018)" required="" aria-required="true" placeholder="" />
+
+												Seconda (Aprile 2018 - Settembre 2018)
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<!-- Nome 
+								================================================== -->
+								<div class="form-group">
+									<label id="entry_573808426_legend" class="col-md-3" style="margin-top: 20px; font-size: 12px; line-height: 12px" >Nome (<strong style="color: #DB4437;  vertical-align: -2px">*</strong>)</label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_573808426_label" class="control-label" for="entry_573808426" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Inserisci il tuo nome</label>
+
+											<input type="text" name="entry.573808426" class="form-control" id="entry_573808426" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" />
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Sarà riportato sull'attestato di frequenza finale</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Cognome
+								================================================== -->
+								<div class="form-group">
+									<label id="entry_1882019516_legend" class="col-md-3" style="margin-top: 20px; font-size: 12px; line-height: 12px" >Cognome (<strong style="color: #DB4437; vertical-align: -2px">*</strong>)</label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_1882019516_label" class="control-label" for="entry_1882019516" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Inserisci il tuo cognome</label>
+
+											<input type="text" name="entry.1882019516" class="form-control" id="entry_1882019516" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" />
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Sarà riportato sull'attestato di frequenza finale</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- e-Mail
+								================================================== -->
+								<div class="form-group">
+									<label id="entry_1077870284_legend" class="col-md-3" style="vertical-align: middle;  font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">email</i> <span style="vertical-align: 9px">e-Mail (<strong style="color: #DB4437; vertical-align: -2px">*</strong>)</span></label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_1077870284_label" class="control-label" for="entry_1077870284" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Inserisci un indirizzo e-mail valido</label>
+
+											<input type="email" name="entry.1077870284" class="form-control" id="entry_1077870284" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" /><!--INSERIRE IL CONTROLLO DELL'EMAIL PER ATTIVARE L'ISCRIZIONE-->
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Sarà il canale preferenziale per le comunicazioni</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Lingua contenuti del Corso
+								================================================== -->
+								<div class="form-group">
+									<label class="col-md-3 control-label" style="vertical-align: middle; font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">language</i> <span style="vertical-align: 9px">Lingua Corso (<strong style="color: #DB4437; vertical-align: -2px">*</strong>)</span></label>
+
+									<div class="col-md-9">
+										<div class="checkbox checkbox-primary">
+											<label id="group_2111227453_1_label" for="group_2111227453_1" style="float: left; margin-left: 6.5px; font-size: 14px;">
+
+												<input type="checkbox" name="entry.2111227453" value="Italiano" id="group_2111227453_1" class="languageSpoken" role="checkbox" aria-label="Italiano" required="" aria-required="true" placeholder="" checked="checked" />
+
+												<span style="margin-left: 15px">Italiano</span>
+											</label>
+										</div>
+
+										<div class="checkbox checkbox-primary">
+											<label id="group_2111227453_2_label" for="group_2111227453_2" style="float: left; margin-left: 6.5px; font-size: 14px;">
+																					
+												<input type="checkbox" name="entry.2111227453" value="English" id="group_2111227453_2" class="languageSpoken" role="checkbox" aria-label="English" required="" aria-required="true" placeholder="" />
+
+												<span style="margin-left: 15px">English</span>
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<!-- Sistema Operativo
+								================================================== -->
+								<div class="form-group">
+									<!--<label class="col-md-3 control-label" style="margin-top: 20px;font-size: 12px; line-height: 12px">Sistema Operativo in uso (<strong style="color: #DB4437; vertical-align: -2px">*</strong>)</label>-->
+									<label class="col-md-3 control-label" style="vertical-align: middle; font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">computer</i> <span style="vertical-align: 9px">Sistema Operativo in uso (<strong style="color: #DB4437; vertical-align: -2px">*</strong>)</span></label>
+
+									<div class="col-md-9">
+										<div class="radio radio-primary">
+											<label id="group_582971954_1_label" for="group_582971954_1" style="float: left; margin-left: 0; font-size: 14px;">
+
+												<input type="radio" name="entry.582971954" value="Windows" id="group_582971954_1" role="radio" aria-label="Windows" required="" aria-required="true" placeholder="" checked="checked" />
+												Windows
+											</label>
+										</div>
+
+										<div class="radio radio-primary">
+											<label id="group_582971954_2_label" for="group_582971954_2" style="float: left; margin-left: 0; font-size: 14px;">
+
+												<input type="radio" name="entry.582971954" value="macOS" id="group_582971954_2" role="radio" aria-label="macOS" required="" aria-required="true" placeholder="" />
+												macOS
+											</label>
+										</div>
+
+										<div class="radio radio-primary">
+											<label id="group_582971954_3_label" for="group_582971954_3" style="float: left; margin-left: 0; font-size: 14px;">
+											
+												<input type="radio" name="entry.582971954" value="macOS" id="group_582971954_3" role="radio" aria-label="Linux" required="" aria-required="true" placeholder="" />
+												Linux
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<!-- Area professionale 
+								================================================== -->
+								<div class="form-group">
+									<label id="entry_1065002122_legend" class="col-md-3" style="margin-top: 20px; font-size: 12px; line-height: 12px" >Area professionale (<strong style="color: #DB4437;  vertical-align: -2px">*</strong>)</label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_1065002122_label" class="control-label" for="entry_1065002122" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Inserisci la tua area professionale</label>
+
+											<input type="text" name="entry.1065002122" class="form-control" id="entry_1065002122" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" />
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Servirà per creare contenuti più mirati per il tuo settore (es. Ristorazione)</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Ruolo professionale 
+								================================================== -->
+								<div class="form-group">
+									<label id="entry_228822092_legend" class="col-md-3" style="margin-top: 20px; font-size: 12px; line-height: 12px" >Ruolo professionale (<strong style="color: #DB4437;  vertical-align: -2px">*</strong>)</label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_228822092_label" class="control-label" for="entry_228822092" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Inserisci il tuo ruolo professionale</label>
+
+											<input type="text" name="entry.228822092" class="form-control" id="entry_228822092" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" />
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Aiuterà per creare contenuti su misura per te (es. Chef)</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Data di nascita
+								================================================== -->
+								<div class="form-group">
+									<label id="entry_362604716_legend" class="col-md-3" style="vertical-align: middle; font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">event</i> <span style="vertical-align: 9px">Data di nascita</span></label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_362604716_label" class="control-label" for="entry_362604716" style="float: left; margin-left: 0; margin-top: 25px; font-size: 14px; color: #5BB35B; padding: 0 2px;">gg/mm/aaaa</label>
+
+											<input type="date" name="entry.362604716" class="form-control" id="entry_362604716" placeholder="" value="" style="font-size: 14px; line-height: 20px; margin-top: 9px;" /><!--INSERIRE IL CONTROLLO DELL'EMAIL PER ATTIVARE L'ISCRIZIONE-->
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><!--<i class="material-icons" style="font-size: 20px; line-height: 20px; vertical-align: middle;">event</i>--><i class="material-icons" style="font-size: 20px; line-height: 20px; vertical-align: middle;">perm_contact_calendar</i> <i class="material-icons" style="font-size: 20px; line-height: 24px; vertical-align: middle;">thumb_up</i> <em>È un giorno speciale! (Opzionale)</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Telefono
+								================================================== -->
+								<div class="form-group">
+									<!--label id="entry_424983240_legend" class="col-md-3" style="margin-top: 20px;font-size: 12px; line-height: 12px" >Telefono</label>-->
+									<label id="entry_424983240_legend" class="col-md-3" style="vertical-align: middle; font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">phone</i> <span style="vertical-align: 9px">Telefono</span></label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_424983240_label" class="control-label" for="entry_424983240" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Numero di telefono mobile</label>
+
+											<input type="tel" name="entry.424983240" class="form-control" id="entry_424983240" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" />
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Se desideri partecipare al gruppo di WhatsApp del Corso (Opzionale)</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Website
+								================================================== -->
+								<div class="form-group">
+									<!--<label id="entry_313296895_legend" class="col-md-3" style="margin-top: 20px;font-size: 12px; line-height: 12px" >Sito web</label>-->
+									<label id="entry_313296895_legend" class="col-md-3" style="vertical-align: middle; font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">http</i> <span style="vertical-align: 9px">Sito web</span></label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_313296895_label" class="control-label" for="entry_313296895" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Il tuo sito web</label>
+
+											<input type="url" name="entry.313296895" class="form-control" id="entry_313296895" placeholder="" style="font-size: 14px; line-height: 20px; margin-top: 7px;" />
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba"><em>Se desideri avere anche una consulenza da aggiungere in nota (Opzionale)</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Note aggiuntive
+								================================================== -->
+								<div class="form-group">
+									<!--<label id="entry_1410746836_legend" class="col-md-3" style="margin-top: 20px; font-size: 12px; line-height: 12px" >Note aggiuntive</label>-->
+									<label id="entry_1410746836_legend" class="col-md-3" style="vertical-align: middle; font-size: 12px; line-height: 12px; margin-top: 20px;" ><i class="material-icons">note_add</i> <span style="vertical-align: 9px">Nota</span></label>
+
+									<div class="col-md-9">
+										<div class="form-group label-floating" style="margin: 0 0;">
+											<label id="entry_1410746836_label" class="control-label" for="entry_1410746836" style="float: left; margin-left: 0; margin-top: 15px; font-size: 14px; color: #5BB35B;">Note aggiuntive</label>
+
+											<textarea name="entry.228822092" rows="2" cols="0" class="form-control" id="entry_1410746836" dir="auto" aria-label="Note aggiuntive" placeholder="" style="font-size: 14px; line-height: 20px; margin: 7px 0 5px 0; padding: 0; border: none"></textarea>
+
+											<p class="help-block" style="font-weight: 400; color: #a9b5ba;"><em>Qui puoi lasciare note aggiuntive o richieste particolari: verrai contattato tramite l'email fornita (Opzionale)</em></p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Ci siamo! Avviso
+								================================================== -->
+								<div role="listitem" class="freebirdFormviewerViewItemsItemItem" jsname="ibnC6b" jscontroller="RGrRJf" data-item-id="243757848" style="/* tipo 1 */
+	/*box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);*/
+	/* tipo 2 */
+	/*box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);*/
+	/* tipo 3 */
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+	/* tipo 4 */
+	/*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);*/
+	/* tipo 5 */
+	/*box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3);*/">
+									<div class="freebirdMaterialHeaderbannerLabelContainer freebirdFormviewerViewItemsSectionheaderBanner" jsname="bLLMxc" role="heading">
+										<div class="freebirdMaterialHeaderbannerLabelTextContainer freebirdSolidBackground">
+											<div class="freebirdMaterialHeaderbannerSectionText freebirdFormviewerViewItemsSectionheaderBannerText" style="/* tipo 1 */
+	/*box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);*/
+	/* tipo 2 */
+	/*box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);*/
+	/* tipo 3 */
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+	/* tipo 4 */
+	/*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25);*/
+	/* tipo 5 */
+	/*box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3);*/">Ci siamo!</div>
+										</div>
+										<div class="freebirdMaterialHeaderbannerSectionTriangleContainer"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10" preserveAspectRatio="none" class="freebirdMaterialHeaderbannerSectionTriangle"><polygon class="freebirdSolidFill" points="0,0 10,0 0,10"></polygon></svg></div>
+									</div>
+									<div class="freebirdFormviewerViewItemsSectionheaderDescriptionText">
+										<p style="font-weight: 700; text-align: right;"><em style="font-size: 12px; line-height: 16px;">Una copia di questo modulo verrà spedita alla tua e-mail.</em></p>
+										<p style="font-weight: 400; text-align: left; margin: 20px 0">Premi il pulsante INVIA per procedere con l&#39;inoltro della tua domanda d&#39;iscrizione: potrai imparare così finalmente la programmazione per il Web, e aprire nuove frontiere per il tuo Business!</p>
+										<p style="font-weight: 500; text-align: right;"><em style="font-size: 12px; line-height: 16px">Learn to Earn</em></p>
+										<p style="font-weight: 500; text-align: right;"><em style="font-size: 12px; line-height: 16px">YITA | Your IT Assistant</em></p>
+									</div>
+									<div jsname="XbIQze" class="freebirdFormviewerViewItemsItemErrorMessage" id="i.err.243757848" role="alert"></div>
+								</div>
+
+								<!-- Submit form
+								================================================== -->
+								<div class="form-group">
+									<div class="col-md-10 col-md-offset-2">
+										<button id="cancelButton" type="button" class="btn btn-default">Cancella</button>
+										<button id="submitButton" type="submit" class="btn btn-primary">Invia</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<br>
+
+<!-- Modal inputEmpty -->
+<!--
+<div id="inputEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437; vertical-align: -2px">*</strong>) Le voci indicate con l'asterisco sono necessarie per inoltrare la domanda d'iscrizione al Corso, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+	</div>
+</div>
+-->
+
+<!-- Modal Name Empty -->
+<div id="nameEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437;vertical-align: -2px">*</strong>) Scrivere il proprio <em style="font-variant: small-caps;">Nome</em>, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal Surname Empty -->
+<div id="surnameEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437;vertical-align: -2px">*</strong>) Scrivere il proprio <em style="font-variant: small-caps;">Cognome</em>, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal Ruolo Professionale Empty -->
+<div id="roleProEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437;vertical-align: -2px">*</strong>) Inserire il proprio <em style="font-variant: small-caps;">Ruolo Professionale</em> (es. Chef) per indirizzare la creazione dei contenuti, rendendoli su misura per sè, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal Area Professionale Empty -->
+<div id="areaProEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437;vertical-align: -2px">*</strong>) Inserire l'<em style="font-variant: small-caps;">Area Professionale</em> (es. Ristorazione) per agevolare la creazione di contenuti più mirati per il proprio settore, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal e-Mail Empty -->
+<div id="emailEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437;vertical-align: -2px">*</strong>) Scrivere il proprio <em style="font-variant: small-caps;">Indirizzo e-Mail</em>, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal Checkboxes Empty -->
+<div id="checkboxEmpty" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<p class="modal-title" style="line-height: 50px;"><i class="material-icons" style="font-size: 35px; color: #DB4437;">info_outline</i> <span style="vertical-align: 12px;">Campo obbligatorio</span></p>
+			</div>
+
+			<div class="modal-body">
+				<h5 style="font-size: 13px; line-height: 17px; text-align: center;">(<strong style="color: #DB4437; vertical-align: -2px">*</strong>) Selezionare almeno una voce per la <em>lingua preferenziale</em> dei contenuti del Corso, grazie.</h5>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script language="Javascript" type="text/javascript" src="https://youritassistant.github.io/js/jquery-1.10.2.min.js"></script>
+<script language="Javascript" type="text/javascript" src="vendor/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script language="Javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script language="Javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+<script language="Javascript" type="text/javascript" src="vendor/smooth-page-scroll/js/smoothPageScroll.js"></script>
+
+<script language="Javascript" type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script language="Javascript" type="text/javascript" src="https://youritassistant.github.io/framework/bootstrap-material-design/dist/js/ripples.min.js"></script>
+<script language="Javascript" type="text/javascript" src="https://youritassistant.github.io/framework/bootstrap-material-design/dist/js/material.min.js"></script>
+
+<script language="Javascript" type="text/javascript">
+	var eventposted=0;
+
+	$(document).ready(function(){
+		$.material.init();
+
+		/*
+		if (navigator.userAgent.match(/Trident\/7\./)) {
+			// if IE
+			$('body').on("mousewheel", function () {
+				// remove default behavior
+				event.preventDefault();
+				//scroll without smoothing
+				var wheelDelta = event.wheelDelta/3;
+				//var wheelDelta = event.wheelDelta;
+				var currentScrollPosition = window.pageYOffset;
+				window.scrollTo(0, currentScrollPosition - wheelDelta);
+			});
+		}
+		*/
+
+		var neonOn = {
+			"-webkit-animation": "neon2 1.5s ease-in-out infinite alternate",
+			"-moz-animation": "neon2 1.5s ease-in-out infinite alternate",
+			"-ms-animation": "neon2 1.5s ease-in-out infinite alternate",
+			"-o-animation": "neon2 1.5s ease-in-out infinite alternate",
+			"animation": "neon2 1.5s ease-in-out infinite alternate",
+			"color" : "#f5f5f5" // #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF, #F3F5F6
+		};
+
+		var neonOff = {
+			"-webkit-animation": "none",
+			"-moz-animation": "none",
+			"-ms-animation": "none",
+			"-o-animation": "none",
+			"animation": "none",
+			"-webkit-transition": "all 0.5s",
+			"-moz-transition": "all 0.5s",
+			"-ms-transition": "all 0.5s",
+			"-o-transition": "all 0.5s",
+			"transition": "all 0.5s",
+			"color" : "#9E8048" // #ffffff, #f5f5f5, #9E8048, #263238, #33454C, #5BB35B, #228DFF
+		};
+
+		$(window).scroll($.debounce( 250, true, function(){
+			$( "#mouse i.neon" ).css(neonOn);
+		} ) );
+		$(window).scroll($.debounce( 250, function(){
+			$( "#mouse i.neon" ).css(neonOff);
+		} ) );
+		$( "#mouse i.neon" ).mouseenter( function(){
+			$( "#mouse i.neon" ).css(neonOn);
+		}).mouseleave( function(){
+			$( "#mouse i.neon" ).css(neonOff);
+		});
+
+		function setModalMaxHeight(element) {
+			this.$element     = $(element);  
+			this.$content     = this.$element.find('.modal-content');
+			var borderWidth   = this.$content.outerHeight() - this.$content.innerHeight();
+			var dialogMargin  = $(window).width() < 768 ? 20 : 60;
+			var contentHeight = $(window).height() - (dialogMargin + borderWidth);
+			var headerHeight  = this.$element.find('.modal-header').outerHeight() || 0;
+			var footerHeight  = this.$element.find('.modal-footer').outerHeight() || 0;
+			var maxHeight     = contentHeight - (headerHeight + footerHeight);
+
+			this.$content.css({
+				'overflow': 'hidden'
+			});
+			
+			this.$element.find('.modal-body').css({
+				'max-height': maxHeight,
+				'overflow-y': 'auto'
+			});
+		}
+
+		$('.modal').on('show.bs.modal', function() {
+			$(this).show(); 
+			setModalMaxHeight(this);
+		});
+
+		var inputElements = $( "input[type=text], input[type=email], input[type=date], input[type=tel], input[type=url], textarea" );
+		inputElements.focusout(function() {
+			if (!$(this).val() || $.trim( $(this).val() ) == '') {
+				$id = "#"+$(this).attr('id');
+				//alert($id);
+				$legendId = $id+"_label";
+				//alert($legendId);
+				//$( $legendId ).empty();
+				$( $legendId ).show();
+
+				/*
+				setTimeout(function() {
+					$('#inputEmpty').modal('show');
+					$(this).focus();
+				}, 0);
+				*/
+			} else {
+				$id = "#"+$(this).attr('id');
+				//alert($id);
+				$legendId = $id+"_label";
+				//alert($legendId);
+				//$( $legendId ).empty();
+				$( $legendId ).hide();
+			}
+		});
+
+		/* SUBMIT WITH CHECK AND REDIRECTION */
+		$('#submitButton').on( "click", function (e) {
+			if (!$('input[type=checkbox].languageSpoken:checked').length) {
+				//alert("Please check at least one checkbox");
+				$( '#checkboxEmpty' ).modal('show');
+				$( "#group_2111227453_1" ).focus();
+				//prevent the default form submit if it is not checked
+				e.preventDefault();
+			} else if (!$.trim($( "#entry_573808426" ).val())) {
+				$( '#nameEmpty' ).modal('show');
+				$( "#entry_573808426" ).focus();
+				e.preventDefault();
+			} else if (!$.trim($( "#entry_1882019516" ).val())) {
+				$( '#surnameEmpty' ).modal('show');
+				$( "#entry_1882019516" ).focus();
+				e.preventDefault();
+			} else if (!$.trim($( "#entry_1077870284" ).val())) {
+				$( '#emailEmpty' ).modal('show');
+				$( "#entry_1077870284" ).focus();
+				e.preventDefault();
+			} else if (!$.trim($( "#entry_1065002122" ).val())) {
+				$( '#areaProEmpty' ).modal('show');
+				$( "#entry_1065002122" ).focus();
+				e.preventDefault();
+			} else if (!$.trim($( "#entry_228822092" ).val())) {
+				$( '#roleProEmpty' ).modal('show');
+				$( "#entry_228822092" ).focus();
+				e.preventDefault();
+			} else {
+				window.setInterval(redirect, 250); // 100
+
+				$('#complete_dialog').modal('show'); 
+				setTimeout(function(){ $('#complete_dialog').modal({ show: false }); }, 3000);
+			}
+		});
+
+		function redirect(){
+			if(($("#mG61Hd").is(':visible')) && (eventposted==0)){
+				window.location = "https://youritassistant.github.io";
+				eventposted=1;
+			}
+		}
+
+		/* === ON RESIZE === */
+
+		var waitForFinalEvent = (function () {
+			var timers = {};
+			return function (callback, ms, uniqueId) {
+				if (!uniqueId) {
+					uniqueId = "Don't call this twice without a uniqueId";
+				}
+				if (timers[uniqueId]) {
+					clearTimeout(timers[uniqueId]);
+				}
+				timers[uniqueId] = setTimeout(callback, ms);
+			};
+		})();
+
+		var $window = $(window);
+		$window.resize(function () {
+			waitForFinalEvent(function () {
+				/* MODAL CENTRATO */
+
+				if ($('.modal.in').length == 1) {
+					setModalMaxHeight($('.modal.in'));
+				}
+
+				/* MARGIN-TOP PER LABELS */
+
+				if ($window.width() <= 767) {
+					$( "div.label-floating.is-focused label" ).css({
+						"background-color" : "#f5f5f5 !important",
+						"color" : "#9E8048 !important", // #009688, #5BB35B, #9E8048
+						"font-size" : "12px !important",
+						"line-height" : "12px !important",
+						"font-variant" : "small-caps !important",
+						//"font-weight" : "bold !important",
+						"margin-top" : "-20px !important",
+						//"padding" : "10px 0 !important",
+						"z-index" : "2 !important"
+					});
+
+					$( ".freebirdFormviewerViewItemsItemItem" ).css({
+						"background-color" : "transparent",
+						"padding" : "16px 17px",
+						"page-break-inside" : "avoid",
+						"-webkit-transition" : "background-color 200ms cubic-bezier(0.0, 0.0, 0.2, 1)",
+						"transition" : "background-color 200ms cubic-bezier(0.0, 0.0, 0.2, 1)",
+						"margin-top" : "80px"
+					});
+				} else {
+					$( "div.label-floating.is-focused label" ).css({
+						"background-color" : "#f5f5f5 !important",
+						"color" : "#9E8048 !important", // #009688, #5BB35B, #9E8048
+						"font-size" : "12px !important",
+						"line-height" : "12px !important",
+						"font-variant" : "small-caps !important",
+						//"font-weight" : "bold !important",
+						"margin-top" : "0 !important",
+						//"padding" : "10px 0 !important",
+						"z-index" : "2 !important"
+					});
+
+					$( ".freebirdFormviewerViewItemsItemItem" ).css({
+						"background-color" : "transparent",
+						"padding" : "16px 17px",
+						"page-break-inside" : "avoid",
+						"-webkit-transition" : "background-color 200ms cubic-bezier(0.0, 0.0, 0.2, 1)",
+						"transition" : "background-color 200ms cubic-bezier(0.0, 0.0, 0.2, 1)",
+						"margin-top" : "30px"
+					});
+				}
+
+			}, 500, "some unique id");
+		});
+	});
+</script>
+</body>
+</html>
